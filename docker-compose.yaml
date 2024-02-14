@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-apache-php-container
+    ports:
+      - "80:80"
+    volumes:
+      - ./php:/var/www/html
+
+  mysql:
+    image: mysql:5.6
+    container_name: my-mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: phpmailer
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
